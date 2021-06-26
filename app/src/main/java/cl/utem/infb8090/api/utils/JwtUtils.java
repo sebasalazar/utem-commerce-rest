@@ -119,12 +119,16 @@ public class JwtUtils implements Serializable {
                 if (decode != null) {
                     final String jwtIp = StringUtils.trimToEmpty(decode.getClaim("ip").asString());
                     ok = StringUtils.equals(jwtIp, ip);
+                    if (!ok) {
+                        LOGGER.error("IPs difieren '{}' != '{}'", jwtIp, ip);
+                    }
                 }
             }
         } catch (Exception e) {
             ok = false;
-            LOGGER.error("Error al obtener procesador : {}", e.getMessage());
-            LOGGER.debug("Error al obtener procesador : {}", e.getMessage(), e);
+            LOGGER.error("{}", jwt);
+            LOGGER.error("Error al decodificar JWT : {}", e.getMessage());
+            LOGGER.debug("Error al decodificar JWT : {}", e.getMessage(), e);
         }
         return ok;
     }

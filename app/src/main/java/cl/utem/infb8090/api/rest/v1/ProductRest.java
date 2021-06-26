@@ -3,7 +3,6 @@ package cl.utem.infb8090.api.rest.v1;
 import cl.utem.infb8090.api.exception.CpydException;
 import cl.utem.infb8090.api.persistence.manager.ProductManager;
 import cl.utem.infb8090.api.persistence.model.Product;
-import cl.utem.infb8090.api.rest.vo.AuthVO;
 import cl.utem.infb8090.api.rest.vo.ErrorVO;
 import cl.utem.infb8090.api.rest.vo.ProductVO;
 import cl.utem.infb8090.api.utils.IPUtils;
@@ -64,7 +63,7 @@ public class ProductRest implements Serializable {
             throw new CpydException(403, "No tiene permiso para acceder a este recurso");
         }
 
-        final String jwt = StringUtils.trimToEmpty(StringUtils.removeStartIgnoreCase("bearer", bearer));
+        final String jwt = StringUtils.trimToEmpty(StringUtils.removeStartIgnoreCase(bearer, "bearer"));
         boolean valid = JwtUtils.isValid(ip, jwt);
         if (!valid) {
             LOGGER.error("El token de autenticación no es válido");
