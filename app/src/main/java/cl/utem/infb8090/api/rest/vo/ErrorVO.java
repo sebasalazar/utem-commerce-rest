@@ -1,7 +1,12 @@
 package cl.utem.infb8090.api.rest.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDateTime;
 
+@ApiModel(value = "error")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ErrorVO {
 
     public String message = null;
@@ -17,6 +22,8 @@ public class ErrorVO {
         this.date = LocalDateTime.now();
     }
 
+    @ApiModelProperty(value = "Mensaje descriptivo con el error",
+            required = true, example = "Error al validar")
     public String getMessage() {
         return message;
     }
@@ -25,6 +32,8 @@ public class ErrorVO {
         this.message = message;
     }
 
+    @ApiModelProperty(value = "Fecha en que ocurre el error en el servidor",
+            required = true)
     public LocalDateTime getDate() {
         return date;
     }
