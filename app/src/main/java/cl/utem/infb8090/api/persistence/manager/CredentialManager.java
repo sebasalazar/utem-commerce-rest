@@ -37,10 +37,23 @@ public class CredentialManager implements Serializable {
 
     /**
      *
+     * @param app Nombre que identifica la credencial.
+     * @return un objeto credencial o null si no lo encuentra
+     */
+    public Credential getCredentialByApp(final String app) {
+        Credential credential = null;
+        if (StringUtils.isNotBlank(app)) {
+            credential = credentialRepository.findByAppIgnoreCase(app);
+        }
+        return credential;
+    }
+
+    /**
+     *
      * @param token Token que identifica la credencial.
      * @return un objeto credencial o null si no lo encuentra
      */
-    public Credential getCredential(final String token) {
+    public Credential getCredentialByToken(final String token) {
         Credential credential = null;
         if (StringUtils.isNotBlank(token)) {
             credential = credentialRepository.findByToken(token);
