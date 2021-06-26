@@ -13,6 +13,8 @@ Para facilidad de desarrollo se aconseja usar Ubuntu 20.04 LTS. Los ejemplos asu
 
 - **app** . Contiene el código fuente de una aplicación Spring BOOT.
 - **db** . Contiene los script necesarios para trabajar con la base de datos.
+- Por defecto el servicio levanta en la máquina local en el puerto 8080 y con el contexto cpyd: http://127.0.0.1:8080/cpyd
+- La documentación del proyecto se encuentra en: http://127.0.0.1:8080/cpyd/swagger-ui/
 
 ### Base de datos.
 Dentro de la carpeta db existen un conjunto de scripts que se deben ejecutar en orden para instanciar los datos que necesita la aplicación.
