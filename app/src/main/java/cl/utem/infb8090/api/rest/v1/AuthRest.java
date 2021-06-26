@@ -4,9 +4,13 @@ import cl.utem.infb8090.api.exception.CpydException;
 import cl.utem.infb8090.api.persistence.manager.CredentialManager;
 import cl.utem.infb8090.api.persistence.model.Credential;
 import cl.utem.infb8090.api.rest.vo.AuthVO;
+import cl.utem.infb8090.api.rest.vo.ErrorVO;
 import cl.utem.infb8090.api.rest.vo.LoginVO;
 import cl.utem.infb8090.api.utils.IPUtils;
 import cl.utem.infb8090.api.utils.JwtUtils;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +38,14 @@ public class AuthRest implements Serializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthRest.class);
 
+    @ApiOperation(value = "Permite obtener un JWT válido para consumir las otras operaciones del servicio REST")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Respuesta fue exitosa", response = AuthVO.class),
+        @ApiResponse(code = 400, message = "Petición es inválida", response = ErrorVO.class),
+        @ApiResponse(code = 401, message = "Acceso no autorizado", response = ErrorVO.class),
+        @ApiResponse(code = 403, message = "No tiene permisos", response = ErrorVO.class),
+        @ApiResponse(code = 412, message = "Falló alguna precondición", response = ErrorVO.class)
+    })
     @PostMapping(value = "/login", consumes = {"application/json;charset=utf-8"}, produces = {"application/json;charset=utf-8"})
     public ResponseEntity login(@RequestBody LoginVO request) {
         /**
