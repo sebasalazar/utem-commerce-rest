@@ -15,16 +15,16 @@ Para facilidad de desarrollo se aconseja usar Ubuntu 20.04 LTS. Los ejemplos asu
 - **db** . Contiene los script necesarios para trabajar con la base de datos.
 
 ### Base de datos.
-Dentro de la carpeta db existen un conjunto de scripts que se deben ejecutar en order para instanciar los datos que necesita la aplicación.
+Dentro de la carpeta db existen un conjunto de scripts que se deben ejecutar en orden para instanciar los datos que necesita la aplicación.
 
 * **01-model.sql** Contiene el DDL necesario para crear las tablas y los objetos importantes del modelo de datos.
 
 ## Ejecución
-Para ejecutar el proyecto, debe compilar el proyecto:
+Lo primero es compilar el proyecto:
 
-mvn -f app/ clean install
+**mvn -f app/ clean install**
 
-Para ejecutar debe correr el siguiente comando:
+Para ejecutar:
 
-java -jar app/target/cpyd.war
+**java -jar app/target/cpyd.war**
 
